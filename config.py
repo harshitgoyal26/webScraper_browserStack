@@ -1,5 +1,5 @@
 import os
-
+from dotenv import load_dotenv
 
 
 TRANSLATION_API_KEY = os.getenv("TRANSLATION_API_KEY", "your_translation_api_key")
