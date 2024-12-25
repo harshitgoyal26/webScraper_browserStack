@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 import os
-import pandas as pd
+import requests
+from config import IMAGE_SAVE_PATH,BASE_URL
 
 def setup_driver():
     driver = webdriver.Chrome()  
@@ -13,32 +14,27 @@ def scrape_articles(driver):
     driver.implicitly_wait(20)
     
 
-
-    accept_button = driver.find_element(By.CSS_SELECTOR, "#didomi-notice-agree-button")
-    driver.execute_script("arguments[0].click();", accept_button)
-    print("Accepted cookies using JavaScript")
-
+    try:
+        accept_button = driver.find_element(By.CSS_SELECTOR, "#didomi-notice-agree-button")
+        driver.execute_script("arguments[0].click();", accept_button)
+        print("Accepted cookies using JavaScript")
+    except Exception as e:
+        print(f"Cookie banner not found: {e}")
    
 
-    # opinion_section = driver.find_element(By.LINK_TEXT, "Opinión")
-    # opinion_section.click()
     driver.implicitly_wait(10)
-    articles = driver.find_elements(By.CSS_SELECTOR, ".c.c-d")[:5] # Update with actual class
+    articles = driver.find_elements(By.CSS_SELECTOR, ".c.c-d")[:5]
     scraped_data = []
     i = 0
     for article in articles:
         header =article.find_element(By.CSS_SELECTOR, ".c_h")
         h2 = header.find_element(By.CSS_SELECTOR, ".c_t ")
-        h3 = header.find_element(By.CSS_SELECTOR, ".c_t c_k")
         title = h2.find_element(By.TAG_NAME, "a").text
 
         content = article.find_element(By.CSS_SELECTOR, ".c_d").text
-
         img_name="No Image Found!"
         try:
             figure1 = article.find_element(By.CSS_SELECTOR, ".c_m")
-
-
 
             if article.find_element(By.CSS_SELECTOR, ".c_m"):
                 figure1= article.find_element(By.CSS_SELECTOR, ".c_m")
@@ -47,23 +43,18 @@ def scrape_articles(driver):
             # Save image locally
                 if image:
                     img_url = image.get_attribute("src")
-                if img_url:
+                    if img_url:
                         img_data = requests.get(img_url).content
-                        
-                img_name = os.path.join(/res/img, f"{i}_{title.replace(' ', '_')}.jpg")
+                        img_name = os.path.join(IMAGE_SAVE_PATH, f"{i}_{title.replace(' ', '_')}.jpg")
 
-                with open(img_name, 'wb') as f:
-                    f.write(img_data)
+                        with open(img_name, 'wb') as f:
+                            f.write(img_data)
 
 
         except NoSuchElementException:
             print("No figure element found with the class '.c_m'")
 
-
         i=i+1
-
-
-        #scraped_data.append({"title": anchor_text, "content": content, "image": image_name})
         scraped_data.append({"title": title, "content": content, "image": img_name})
 
     return scraped_data
