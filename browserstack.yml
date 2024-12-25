@@ -1,0 +1,31 @@
+username: YOUR_BROWSERSTACK_USERNAME
+accessKey: YOUR_BROWSERSTACK_ACCESS_KEY
+platforms:
+  - os: Windows
+    osVersion: 10
+    browserName: Chrome
+    browserVersion: 120.0
+  - os: OS X
+    osVersion: Monterey
+    browserName: Safari
+    browserVersion: 15.6
+  - deviceName: Samsung Galaxy S23 Ultra
+    osVersion: 13.0
+    browserName: chrome
+    deviceOrientation: portrait
+  - deviceName: Xiaomi Redmi Note 11
+    osVersion: 11.0
+    browserName: chrome
+    deviceOrientation: portrait
+  - deviceName: iPhone 15 Pro Max
+    osVersion: 17
+    browserName: safari
+    deviceOrientation: portrait
+    safari:
+      enablePopups: true
+      allowAllCookies: true
+
+
+browserstackLocal: true
+buildName: browserstack-build-1
+projectName: BrowserStack Sample
