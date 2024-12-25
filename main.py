@@ -8,6 +8,9 @@ def main():
         titles = [article["title"] for article in articles]
         content = [article["content"] for article in articles]
 
+        print(titles)
+        print(content)
+
     finally:
         driver.quit()
 
