@@ -1,0 +1,6 @@
+selenium
+webdriver-manager
+requests
+python-dotenv
+browserstack-local
+browserstack-sdk
