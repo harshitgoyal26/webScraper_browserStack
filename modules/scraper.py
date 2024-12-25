@@ -21,7 +21,6 @@ def scrape_articles(driver):
     except Exception as e:
         print(f"Cookie banner not found: {e}")
    
-
     driver.implicitly_wait(10)
     articles = driver.find_elements(By.CSS_SELECTOR, ".c.c-d")[:5]
     scraped_data = []
@@ -32,9 +31,13 @@ def scrape_articles(driver):
         title = h2.find_element(By.TAG_NAME, "a").text
 
         content = article.find_element(By.CSS_SELECTOR, ".c_d").text
+
+
         img_name="No Image Found!"
         try:
             figure1 = article.find_element(By.CSS_SELECTOR, ".c_m")
+
+
 
             if article.find_element(By.CSS_SELECTOR, ".c_m"):
                 figure1= article.find_element(By.CSS_SELECTOR, ".c_m")
@@ -45,6 +48,7 @@ def scrape_articles(driver):
                     img_url = image.get_attribute("src")
                     if img_url:
                         img_data = requests.get(img_url).content
+                        
                         img_name = os.path.join(IMAGE_SAVE_PATH, f"{i}_{title.replace(' ', '_')}.jpg")
 
                         with open(img_name, 'wb') as f:
@@ -55,6 +59,8 @@ def scrape_articles(driver):
             print("No figure element found with the class '.c_m'")
 
         i=i+1
+
+        #scraped_data.append({"title": anchor_text, "content": content, "image": image_name})
         scraped_data.append({"title": title, "content": content, "image": img_name})
 
     return scraped_data
