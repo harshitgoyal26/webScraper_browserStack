@@ -1,25 +1,71 @@
-# webScrapper_browserStack
-Web Scrapper using Selenium and test using BrowserStack
+# webScraper_browserStack
+### Web Scraper using Selenium and test using BrowserStack
 
 
-Step1: Open a terminal at root level of project directory
+## Prerequisites
 
-Step2: Create and activate a virtual environment:
-        python3 -m venv env
-        env\Scripts\activate  # On Windows
-        # OR
-        source env/bin/activate  # On macOS/Linux
+Make sure you have Python3 and `pip` installed on your system.
 
-Step3: Install dependencies:
-        pip install -r requirements.txt
+## Steps
 
-Step4: Configure API keys in .env file:
-        TRANSLATION_API_KEY = 
-        BROWSERSTACK_USERNAME = 
-        BROWSERSTACK_ACCESS_KEY = 
+**1. Open Terminal:**
 
-Step5: to run the script locally:
-        python main.py
+Navigate to the root directory of your project using the terminal.
 
-Step6: To run automated tests on BrowserStack:
-        browserstack-sdk python main.py
+**2. Create and Activate Virtual Environment:**
+
+*   **Windows:**
+
+    ```
+    python -m venv env
+    env\Scripts\activate
+    ```
+
+*   **macOS/Linux:**
+
+    ```
+    python -m venv env
+    source env/bin/activate
+    ```
+
+**3. Install Dependencies:**
+
+Install the required libraries from your `requirements.txt` file:
+
+    
+    pip install -r requirements.txt
+    
+
+**4. Configure API Keys:**
+
+Create a file named `.env` in your project directory and add your API keys:
+
+
+    TRANSLATION_API_KEY= your_translation_api_key
+    BROWSERSTACK_USERNAME= your_browserstack_username
+    BROWSERSTACK_ACCESS_KEY= your_access_key
+    
+
+**5. Run Script Locally:**
+
+To execute the script on your local machine, run:
+
+    
+    python main.py
+    
+
+**6. Run Tests on BrowserStack:**
+
+Use the BrowserStack SDK to run automated tests on their platform:
+
+    
+    browserstack-sdk python main.py
+
+
+
+
+
+**Notes:**
+
+*   Replace `YOUR_TRANSLATION_API_KEY`, `YOUR_BROWSERSTACK_USERNAME`, and `YOUR_BROWSERSTACK_ACCESS_KEY` with your actual API keys.
+*   Ensure the `requirements.txt` file lists the necessary dependencies for your web scrapper.
