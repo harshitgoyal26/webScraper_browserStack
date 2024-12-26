@@ -39,6 +39,7 @@ Install the required libraries from your `requirements.txt` file:
 **4. Configure API Keys:**
 
 Create a file named `.env` in your project directory and add your API keys:
+Get [Rapid Translate Multi Traduction API][https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction]
 
 
     TRANSLATION_API_KEY= your_translation_api_key
